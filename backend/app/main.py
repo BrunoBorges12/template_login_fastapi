@@ -1,12 +1,11 @@
-from fastapi import FastAPI,Depends
-from typing import Annotated
+from fastapi import FastAPI
 
 from core.config import settings
-from sqlmodel import Session
-from models.user  import SQLModel,UserRead,UserCreate,User
-from db.engine import engine,get_session
-
+from models.user  import SQLModel
+from db.engine import engine
+from  api.config_api import api_router
 SQLModel.metadata.create_all(engine)
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
+app.include_router(api_router,prefix="/api/v1")
