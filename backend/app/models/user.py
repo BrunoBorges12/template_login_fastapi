@@ -9,6 +9,7 @@ class UserBase(SQLModel):
 
 
 class User(UserBase,table=True):
+    __tablename__ = 'user'
     id:Optional[int] =  Field(default=None,primary_key=True)
 
 class UserCreate(UserBase):
