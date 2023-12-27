@@ -1,16 +1,17 @@
-from sqlmodel import SQLModel,Field
+from sqlmodel import SQLModel, Field
 from typing import Optional
 
 
 class UserBase(SQLModel):
-    name:str
-    email:str
-    age:str 
+    name: str
+    email: str
+    password: str
 
 
-class User(UserBase,table=True):
-    __tablename__ = 'user'
-    id:Optional[int] =  Field(default=None,primary_key=True)
+class User(UserBase, table=True):
+    __tablename__ = "user"
+    id: Optional[int] = Field(default=None, primary_key=True)
+
 
 class UserCreate(UserBase):
     pass
