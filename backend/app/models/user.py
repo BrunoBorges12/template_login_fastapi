@@ -1,10 +1,11 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, AutoString
+from pydantic import EmailStr
 from typing import Optional
 
 
 class UserBase(SQLModel):
     name: str
-    email: str
+    email: EmailStr = Field(unique=True, index=True, sa_type=AutoString)
     password: str
 
 
@@ -19,3 +20,8 @@ class UserCreate(UserBase):
 
 class UserRead(UserBase):
     pass
+
+
+class Token(SQLModel):
+    access_token: str
+    token_type: str = "bearer"

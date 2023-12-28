@@ -26,7 +26,6 @@ class UserService:
 
     def user_authentication(self, db: Session, email: str, password: str) -> User:
         user = self.get_by_email(db, email=email)
-
         if not user:
             return None
         if not verific_password_hash(password=password, hash_password=user.password):
